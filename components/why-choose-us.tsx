@@ -6,7 +6,7 @@ const reasons = [
   {
     icon: Shield,
     title: 'Qualified Engineering Leadership',
-    description: 'BSc Civil Engineering + MSc in Transportation Engineering. Your projects benefit from both academic excellence and 15+ years of real-world field experience.',
+    description: 'BSc Civil Engineering + MSc in Transportation Engineering. Your projects benefit from both academic excellence and 3+ years of real-world field experience.',
   },
   {
     icon: Users,
@@ -102,11 +102,11 @@ export default function WhyChooseUs() {
               <div className="relative bg-primary-foreground bg-opacity-10 rounded-xl p-8 backdrop-blur-sm border border-primary-foreground border-opacity-20">
                 <div className="space-y-6">
                   <div>
-                    <p className="text-4xl font-bold text-secondary mb-2">15+</p>
+                    <p className="text-4xl font-bold text-secondary mb-2">4+</p>
                     <p className="text-muted-foreground text-opacity-75">Years in the Industry</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-secondary mb-2">50+</p>
+                    <p className="text-4xl font-bold text-secondary mb-2">15+</p>
                     <p className="text-muted-foreground text-opacity-75">Successful Projects</p>
                   </div>
                   <div>

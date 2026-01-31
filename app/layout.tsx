@@ -1,5 +1,6 @@
 import React from "react"
 import Navigation from '@/components/navigation'
+import Footer from '@/components/footer'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
@@ -15,15 +16,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
+        url: '/g-logo.svg',
         type: 'image/svg+xml',
       },
     ],
@@ -41,6 +34,7 @@ export default function RootLayout({
       <body className={`font-sans antialiased`}>
         <Navigation />
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>

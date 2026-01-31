@@ -73,7 +73,7 @@ export default function About() {
                 <span className="font-semibold text-foreground">Here's what matters:</span> When you hire us, you get me. Every project gets personal oversight. Not a site supervisor checking boxes — the founder ensuring quality, safety, and timeline adherence.
               </p>
               <p>
-                My reputation is built on roads that connect communities, buildings that stand strong, and drainage systems that protect assets. Every client — government agencies, developers, NGOs, farmers — trusts me because I deliver results.
+                My reputation is built on roads that connect communities, buildings that stand strong, and drainage systems that protect assets. I aim to deliver results for every client I work with. 
               </p>
             </div>
           </div>

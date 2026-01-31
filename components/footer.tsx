@@ -13,8 +13,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="#" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <span className="text-sm font-bold text-secondary-foreground">GA</span>
+              <div className="w-12 h-10 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
+                <img src="/gulaale-logo.png" alt="Gulaale logo" className="h-8 object-contain" />
               </div>
               <span className="font-bold text-lg">Gulaale Adonia</span>
             </Link>

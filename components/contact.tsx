@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from "react"
@@ -50,8 +51,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'gulaalehumphreadonia256@gmail.com',
-      href: 'mailto:gulaalehumphreadonia256@gmail.com',
+      value: 'gulaaleadonia@gmail.com',
+      href: 'mailto:gulaaleadonia@gmail.com',
     },
     {
       icon: MapPin,

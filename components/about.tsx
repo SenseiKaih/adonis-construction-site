@@ -24,7 +24,7 @@ export default function About() {
               </h2>
               <p className="text-lg text-secondary font-semibold mb-2">Civil Engineer • Project Leader</p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Government contracts. Developer partnerships. NGO collaborations. For 15+ years, I've delivered engineered excellence on 50+ projects across Uganda — personally supervising every one.
+                Government contracts. Developer partnerships. NGO collaborations. For 3+ years, I've delivered engineered excellence on 20 projects across Uganda in 2024 — personally supervising every one.
               </p>
             </div>
 
@@ -49,7 +49,7 @@ export default function About() {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Proven Track Record</h3>
                   <p className="text-muted-foreground text-sm">
-                    50+ completed projects • Zero safety incidents • 100% on-site supervision • Consistent early delivery, under budget
+                    15+ completed projects • Zero safety incidents • 100% on-site supervision • Consistent early delivery, under budget
                   </p>
                 </div>
               </div>

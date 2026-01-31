@@ -22,9 +22,9 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-              <span className="text-sm font-bold text-secondary-foreground">GA</span>
-            </div>
+            {/* <div className="w-10 h-10 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
+              <img src="/gulaale-logo.png" alt="Gulaale logo" className="w-10 h-10 object-cover" />
+            </div> */}
             <div className="hidden sm:block">
               <p className="text-sm font-semibold">Gulaale Adonia</p>
               <p className="text-xs opacity-75">Civil Engineer</p>

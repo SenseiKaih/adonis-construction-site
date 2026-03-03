@@ -1,38 +1,78 @@
-
 'use client';
 
-import React from "react"
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 
+type FormState = {
+  name: string;
+  email: string;
+  phone: string;
+  projectType: string;
+  message: string;
+};
+
+const initialState: FormState = {
+  name: '',
+  email: '',
+  phone: '',
+  projectType: '',
+  message: '',
+};
+
+const googleToLocal: Record<string, keyof FormState> = {
+  'entry.951111352': 'name',
+  'entry.1690999276': 'email',
+  'entry.102180585': 'phone',
+  'entry.1206861024': 'projectType',
+  'entry.4159806': 'message',
+};
+
+const formEndpoint =
+  'https://docs.google.com/forms/d/e/1FAIpQLSejxP8uS8r7r_J_hciunykDjlg2WcAKVGIt0Ex7ARvS_gyeDg/formResponse';
+
 export default function Contact() {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    projectType: '',
-    message: '',
-  });
+  const [formState, setFormState] = useState<FormState>(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormState(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    const key = googleToLocal[name] ?? name;
+    if (key in formState) {
+      setFormState(prev => ({ ...prev, [key]: value } as FormState));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formState);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormState({ name: '', email: '', phone: '', projectType: '', message: '' });
-    }, 3000);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('entry.951111352', formState.name);
+    formData.append('entry.1690999276', formState.email);
+    formData.append('entry.102180585', formState.phone);
+    formData.append('entry.1206861024', formState.projectType);
+    formData.append('entry.4159806', formState.message);
+
+    try {
+      await fetch(formEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData,
+      });
+      setIsSubmitted(true);
+      setFormState(initialState);
+    } catch {
+      // ignore
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -65,33 +105,34 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Let's Build Something Lasting
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tell us about your project. We'll respond within 24 hours with a professional assessment and next steps. No pressure. Just engineering expertise ready to work.
+            Tell us about your project. We'll respond within 24 hours with a
+            professional assessment and next steps. No pressure. Just
+            engineering expertise ready to work.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Information */}
           <div className="space-y-8">
             <div>
               <h3 className="text-xl font-bold text-foreground mb-6">
                 Direct Contact
               </h3>
               <p className="text-muted-foreground mb-8">
-                Call, email, or complete the form. We review all inquiries personally and respond within 24 hours.
+                Call, email, or complete the form. We review all inquiries
+                personally and respond within 24 hours.
               </p>
             </div>
 
-            {contactInfo.map((info, index) => {
+            {contactInfo.map((info, i) => {
               const Icon = info.icon;
               return (
                 <a
-                  key={index}
+                  key={i}
                   href={info.href}
                   className="flex gap-4 p-4 rounded-lg hover:bg-muted transition-colors"
                 >
@@ -104,15 +145,12 @@ export default function Contact() {
                     <p className="text-xs font-semibold text-secondary uppercase tracking-wider">
                       {info.label}
                     </p>
-                    <p className="text-foreground font-medium">
-                      {info.value}
-                    </p>
+                    <p className="text-foreground font-medium">{info.value}</p>
                   </div>
                 </a>
               );
             })}
 
-            {/* Hours */}
             <div className="pt-8 border-t border-border">
               <h4 className="font-semibold text-foreground mb-4">
                 Business Hours
@@ -125,7 +163,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="lg:col-span-2">
             <div className="bg-muted rounded-xl p-8 md:p-12">
               {isSubmitted ? (
@@ -135,21 +172,26 @@ export default function Contact() {
                     Thank You!
                   </h3>
                   <p className="text-muted-foreground max-w-sm">
-                    We've received your message and will be in touch within 24 hours. We look forward to discussing your project.
+                    We've received your message and will be in touch within 24
+                    hours. We look forward to discussing your project.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Name */}
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-semibold text-foreground mb-2"
+                      >
                         Full Name *
                       </label>
                       <input
-                        type="text"
                         id="name"
-                        name="name"
+                        name="entry.951111352"
+                        type="text"
+                        autoComplete="name"
+                        aria-required="true"
                         value={formState.name}
                         onChange={handleChange}
                         required
@@ -158,34 +200,42 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Email */}
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-semibold text-foreground mb-2"
+                      >
                         Email Address *
                       </label>
                       <input
-                        type="email"
                         id="email"
-                        name="email"
+                        name="entry.1690999276"
+                        type="email"
+                        autoComplete="email"
+                        aria-required="true"
                         value={formState.email}
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
-                        placeholder="your@email.com"
+                        placeholder="you@example.com"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Phone */}
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-semibold text-foreground mb-2"
+                      >
                         Phone Number
                       </label>
                       <input
-                        type="tel"
                         id="phone"
-                        name="phone"
+                        name="entry.102180585"
+                        type="tel"
+                        autoComplete="tel"
+                        pattern="^\+?[0-9\s\-()]{7,}$"
                         value={formState.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
@@ -193,55 +243,73 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Project Type */}
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-semibold text-foreground mb-2">
+                      <label
+                        htmlFor="projectType"
+                        className="block text-sm font-semibold text-foreground mb-2"
+                      >
                         Project Type
                       </label>
                       <select
                         id="projectType"
-                        name="projectType"
+                        name="entry.1206861024"
                         value={formState.projectType}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
                       >
-                        <option value="">Select a project type</option>
-                        <option value="road">Road Works</option>
-                        <option value="drainage">Drainage & Culverts</option>
-                        <option value="building">Commercial Building</option>
-                        <option value="residential">Residential Building</option>
-                        <option value="exterior">Exterior & Compound Works</option>
-                        <option value="tourist">Tourist Camps & Cabins</option>
-                        <option value="consultancy">Property Consultancy</option>
-                        <option value="survey">Survey Works</option>
-                        <option value="other">Other</option>
+                        <option value="">Select Project Type</option>
+                        <option value="Road Works">Road Works</option>
+                        <option value="Drainage & Culverts">
+                          Drainage & Culverts
+                        </option>
+                        <option value="Commercial Building">
+                          Commercial Building
+                        </option>
+                        <option value="Residential Building">
+                          Residential Building
+                        </option>
+                        <option value="Exterior & Compound Works">
+                          Exterior & Compound Works
+                        </option>
+                        <option value="Tourist Camps & Cabins">
+                          Tourist Camps & Cabins
+                        </option>
+                        <option value="Property Consultancy">
+                          Property Consultancy
+                        </option>
+                        <option value="Survey Works">Survey Works</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-semibold text-foreground mb-2"
+                    >
                       Project Details *
                     </label>
                     <textarea
                       id="message"
-                      name="message"
+                      name="entry.4159806"
+                      rows={5}
+                      autoComplete="off"
+                      aria-required="true"
                       value={formState.message}
                       onChange={handleChange}
                       required
-                      rows={5}
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary resize-none"
                       placeholder="Tell us about your project, location, scope, and any specific requirements..."
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full px-6 py-4 bg-secondary text-secondary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
+                    disabled={isSubmitting}
+                    className="w-full px-6 py-4 bg-secondary text-secondary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
 
                   <p className="text-xs text-muted-foreground text-center">

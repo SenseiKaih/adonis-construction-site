@@ -16,7 +16,7 @@ export default function Footer() {
               <div className="w-12 h-10 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
                 <img src="/gulaale-logo.png" alt="Gulaale logo" className="h-8 object-contain" />
               </div>
-              <span className="font-bold text-lg">Gulaale Adonia</span>
+              <span className="font-bold text-lg">Adonis Constructions Uganda</span>
             </Link>
             <p className="text-primary-foreground text-opacity-75 text-sm">
               Professional civil engineering and construction solutions serving Uganda since 2010.

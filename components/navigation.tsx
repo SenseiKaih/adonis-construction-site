@@ -26,8 +26,8 @@ export default function Navigation() {
               <img src="/gulaale-logo.png" alt="Gulaale logo" className="w-10 h-10 object-cover" />
             </div> */}
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold">Gulaale Adonia</p>
-              <p className="text-xs opacity-75">Civil Engineer</p>
+              <p className="text-sm font-semibold">Adonis Constructions Ug</p>
+              <p className="text-xs opacity-75">Civil Engineering</p>
             </div>
           </Link>
 

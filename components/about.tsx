@@ -1,82 +1,100 @@
-import { Award, Briefcase, MapPin } from 'lucide-react';
+import { Award, Briefcase, MapPin, CheckCircle, Shield } from 'lucide-react';
+import Image from 'next/image';
 import { getImageById } from '@/lib/images';
 
 export default function About() {
   const founderImage = getImageById('founder-portrait');
+  
   return (
-    <section id="about" className="py-20 md:py-32 bg-background">
+    <section id="about" className="py-20 md:py-32 bg-background border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
           {/* Image */}
-          <div className="relative h-96 md:h-[500px] rounded-xl overflow-hidden shadow-xl order-2 md:order-1">
-            <img
-              src={founderImage?.url || '/placeholder.svg?height=500&width=400'}
-              alt={founderImage?.description || 'Gulaale Humphrey Adonia - Civil Engineer'}
-              className="w-full h-full object-cover"
+          <div className="relative h-96 md:h-[540px] rounded-2xl overflow-hidden shadow-2xl order-2 md:order-1 border border-border group">
+            <Image
+              src={founderImage?.url || '/placeholder.svg'}
+              alt={founderImage?.description || 'Eng. Gulaale Humphrey Adonia - Lead Civil Engineer Adonis Constructions Ug'}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 text-white p-4 bg-background/20 backdrop-blur-md rounded-xl border border-white/20">
+              <p className="text-xs uppercase tracking-wider text-secondary font-bold">On-Site Guarantee</p>
+              <p className="text-sm font-semibold text-white mt-0.5">100% Founder Oversight on Every Job Site in Uganda</p>
+            </div>
           </div>
 
           {/* Content */}
           <div className="space-y-8 order-1 md:order-2">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Gulaale Humphrey Adonia
+              <div className="inline-block px-3 py-1 bg-secondary/10 rounded-full text-secondary text-xs font-bold uppercase tracking-wider mb-3">
+                About The Founder
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground mb-3 tracking-tight">
+                Eng. Gulaale Humphrey Adonia
               </h2>
-              <p className="text-lg text-secondary font-semibold mb-2">Civil Engineer • Project Leader</p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Government contracts. Developer partnerships. NGO collaborations. For 3+ years, I've delivered engineered excellence on 20 projects across Uganda in 2024 — personally supervising every one.
+              <p className="text-lg text-secondary font-bold mb-4">Managing Director & Lead Civil Engineer</p>
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                Government contracts. Commercial developers. NGO initiatives. For over 4 years, I've spearheaded precision civil engineering across Uganda — ensuring structural integrity, regulatory compliance, and budget discipline on every single project.
               </p>
             </div>
 
             {/* Credentials */}
             <div className="space-y-4">
-              <div className="flex gap-4 p-4 bg-secondary/10 rounded-lg">
+              <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm hover:border-secondary/50 transition-colors">
                 <div className="flex-shrink-0">
-                  <Award className="w-6 h-6 text-secondary mt-1" strokeWidth={1.5} />
+                  <div className="p-2.5 bg-secondary/15 rounded-lg">
+                    <Award className="w-6 h-6 text-secondary" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Academic Excellence</h3>
-                  <p className="text-muted-foreground text-sm">
-                    BSc Civil Engineering • MSc in Transportation Engineering (pursuing) — Continuous learning ensures cutting-edge project delivery
+                  <h3 className="font-bold text-foreground mb-1 text-base">Academic & Professional Qualifications</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    BSc Civil Engineering • MSc in Transportation Engineering — Applying international engineering standards to local Ugandan infrastructure.
                   </p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-4 bg-secondary/10 rounded-lg">
+              <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm hover:border-secondary/50 transition-colors">
                 <div className="flex-shrink-0">
-                  <Briefcase className="w-6 h-6 text-secondary mt-1" strokeWidth={1.5} />
+                  <div className="p-2.5 bg-secondary/15 rounded-lg">
+                    <Briefcase className="w-6 h-6 text-secondary" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Proven Track Record</h3>
-                  <p className="text-muted-foreground text-sm">
-                    15+ completed projects • Zero safety incidents • 100% on-site supervision • Consistent early delivery, under budget
+                  <h3 className="font-bold text-foreground mb-1 text-base">Proven Track Record</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    50+ completed civil engineering & construction projects • Zero safety incidents • 100% direct site supervision.
                   </p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-4 bg-secondary/10 rounded-lg">
+              <div className="flex gap-4 p-4 bg-card rounded-xl border border-border shadow-sm hover:border-secondary/50 transition-colors">
                 <div className="flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-secondary mt-1" strokeWidth={1.5} />
+                  <div className="p-2.5 bg-secondary/15 rounded-lg">
+                    <MapPin className="w-6 h-6 text-secondary" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Service Area</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Based in Jinja, serving all of Uganda — roads, drainage, commercial buildings, residential, tourism facilities, property consultancy
+                  <h3 className="font-bold text-foreground mb-1 text-base">Serving All Regions of Uganda</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Headquartered in Jinja, actively executing road, drainage, commercial building, and property development projects across Uganda.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* About Text */}
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <div className="p-5 bg-muted/60 rounded-xl border border-border text-muted-foreground leading-relaxed space-y-2 text-sm md:text-base">
               <p>
-                <span className="font-semibold text-foreground">Here's what matters:</span> When you hire us, you get me. Every project gets personal oversight. Not a site supervisor checking boxes — the founder ensuring quality, safety, and timeline adherence.
-              </p>
-              <p>
-                My reputation is built on roads that connect communities, buildings that stand strong, and drainage systems that protect assets. I aim to deliver results for every client I work with. 
+                <strong className="text-foreground font-semibold">Our Uncompromising Promise:</strong> When you hire Adonis Constructions Ug, you get direct engineering accountability. No distant site supervisors checking boxes — the founder personally ensures every foundation, drainage slope, and structural element meets design specs.
               </p>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>

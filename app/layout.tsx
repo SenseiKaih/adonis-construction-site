@@ -10,9 +10,46 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Civil Engineering & Construction | Gulaale Adonia',
-  description: 'Professional civil engineering and construction services in Uganda. Roads, drainage, buildings, and consultancy by qualified engineer Gulaale Humphrey Adonia.',
+  metadataBase: new URL('https://adonisconstructionsug.com'),
+  title: 'Adonis Constructions Ug | Civil Engineering & Construction Services Uganda',
+  description: 'Leading civil engineering firm in Uganda specializing in low-volume roads, drainage systems, commercial buildings, tourist camps, and real estate consultancy. Personally supervised by Engineer Gulaale Humphrey Adonia.',
   generator: 'v0.app',
+  keywords: [
+    'Civil Engineering Uganda',
+    'Construction Company Jinja',
+    'Road Construction Uganda',
+    'Drainage Engineering Kampala',
+    'Building Contractors Uganda',
+    'Adonis Constructions Ug',
+    'Gulaale Humphrey Adonia',
+    'Low-volume roads Uganda',
+    'Tourist camps construction Uganda',
+  ],
+  alternates: {
+    canonical: 'https://adonisconstructionsug.com',
+  },
+  openGraph: {
+    title: 'Adonis Constructions Ug | Civil Engineering & Construction Services',
+    description: 'Precision engineering, road works, drainage, commercial building, and property consultancy in Uganda.',
+    url: 'https://adonisconstructionsug.com',
+    siteName: 'Adonis Constructions Ug',
+    locale: 'en_UG',
+    type: 'website',
+    images: [
+      {
+        url: '/g-logo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Adonis Constructions Ug Logo and Branding',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Adonis Constructions Ug | Civil Engineering & Construction',
+    description: 'Precision civil engineering and construction services across Uganda.',
+    images: ['/g-logo.svg'],
+  },
   icons: {
     icon: [
       {
@@ -24,6 +61,51 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ConstructionBusiness',
+  name: 'Adonis Constructions Ug',
+  alternateName: 'Adonis Construction Uganda',
+  image: 'https://adonisconstructionsug.com/g-logo.svg',
+  '@id': 'https://adonisconstructionsug.com',
+  url: 'https://adonisconstructionsug.com',
+  telephone: '+256700000000',
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Jinja',
+    addressRegion: 'Eastern Region',
+    addressCountry: 'UG',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 0.4479,
+    longitude: 33.2026,
+  },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Jinja' },
+    { '@type': 'AdministrativeArea', name: 'Kampala' },
+    { '@type': 'AdministrativeArea', name: 'Entebbe' },
+    { '@type': 'Country', name: 'Uganda' },
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Gulaale Humphrey Adonia',
+    jobTitle: 'Civil Engineer',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Civil Engineering & Construction Services',
+    itemListElement: [
+      { '@type': 'Offer', name: 'Low-Volume Road Construction & Maintenance' },
+      { '@type': 'Offer', name: 'Drainage & Culvert Systems' },
+      { '@type': 'Offer', name: 'Commercial & Residential Building' },
+      { '@type': 'Offer', name: 'Eco Tourist Camps & Cabins' },
+      { '@type': 'Offer', name: 'Surveying & Real Estate Consultancy' },
+    ],
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,6 +113,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`font-sans antialiased`}>
         <Navigation />
         {children}

@@ -12,11 +12,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="#" className="flex items-center gap-2">
-              <div className="w-12 h-10 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
-                <img src="/gulaale-logo.png" alt="Gulaale logo" className="h-8 object-contain" />
+            <Link href="#" className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-900 flex items-center justify-center border border-white/20">
+                <img src="/Adonis-constructions-logo.png" alt="Adonis Constructions Ug Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-bold text-lg">Adonis Constructions Uganda</span>
+              <span className="font-bold text-lg">Adonis Constructions Ug</span>
             </Link>
             <p className="text-primary-foreground text-opacity-75 text-sm">
               Professional civil engineering and construction solutions serving Uganda since 2010.
@@ -105,8 +105,8 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail size={16} className="flex-shrink-0 mt-0.5 text-secondary-foreground" />
-                <a href="mailto:gulaaleadonia@gmail.com" className="hover:text-secondary transition-colors">
-                  gulaaleadonia@gmail.com
+                <a href="mailto:gulaalehumphreadonia256@gmail.com" className="hover:text-secondary transition-colors">
+                  gulaalehumphreadonia256@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">

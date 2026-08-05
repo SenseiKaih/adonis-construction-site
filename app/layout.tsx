@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://adonisconstructionsug.com'),
   title: 'Adonis Constructions Ug | Civil Engineering & Construction Services Uganda',
   description: 'Leading civil engineering firm in Uganda specializing in low-volume roads, drainage systems, commercial buildings, tourist camps, and real estate consultancy. Personally supervised by Engineer Gulaale Humphrey Adonia.',
-  generator: 'v0.app',
   keywords: [
     'Civil Engineering Uganda',
     'Construction Company Jinja',
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/g-logo.svg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Adonis Constructions Ug Logo and Branding',
@@ -48,17 +47,21 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Adonis Constructions Ug | Civil Engineering & Construction',
     description: 'Precision civil engineering and construction services across Uganda.',
-    images: ['/g-logo.svg'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
-      {
-        url: '/g-logo.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
     ],
-    apple: '/apple-icon.png',
+    shortcut: ['/favicon.ico'],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/site.webmanifest',
 }
 
 const jsonLd = {
@@ -66,7 +69,8 @@ const jsonLd = {
   '@type': 'ConstructionBusiness',
   name: 'Adonis Constructions Ug',
   alternateName: 'Adonis Construction Uganda',
-  image: 'https://adonisconstructionsug.com/g-logo.svg',
+  image: 'https://adonisconstructionsug.com/Adonis-constructions-logo.png',
+  logo: 'https://adonisconstructionsug.com/Adonis-constructions-logo.png',
   '@id': 'https://adonisconstructionsug.com',
   url: 'https://adonisconstructionsug.com',
   telephone: '+256700000000',
